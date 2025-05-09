@@ -2,7 +2,9 @@
 
 const Login = () => {
   const handleLogin = () => {
-    window.location.href = "http://localhost:5001/auth/google"; // Trigger login with Google
+    // window.location.href = "http://localhost:5001/auth/google"; // Trigger login with Google
+    window.location.href =
+      "https://ai-wellness-backend-pbxw.onrender.com/auth/google"; // Trigger login with Google
   };
 
   return (

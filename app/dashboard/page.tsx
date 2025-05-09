@@ -72,7 +72,9 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
   };
 
   const handleLogout = () => {
-    window.location.href = "http://localhost:5001/auth/logout"; // Trigger logout
+    // window.location.href = "http://localhost:5001/auth/logout"; // Trigger logout
+    window.location.href =
+      "https://ai-wellness-backend-pbxw.onrender.com/auth/logout"; // Trigger logout
   };
 
   useEffect(() => {
