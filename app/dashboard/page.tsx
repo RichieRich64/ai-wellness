@@ -8,17 +8,9 @@ import EnergyInput from "@/components/EnergyInput";
 import EnergyStatus from "@/components/EnergyStatus";
 import EventCard from "@/components/EventCard";
 import RescheduleModal from "@/components/RescheduleModal";
+import { useUser } from "@/hooks/useUser";
 
-export type User = {
-  name: string;
-  email: string;
-};
-
-interface DashboardProps {
-  user: User;
-}
-
-const Dashboard: React.FC<DashboardProps> = ({ user }) => {
+const Dashboard = () => {
   const [loading, setLoading] = useState(false);
   const [rescheduling, setRescheduling] = useState(false);
   const [events, setEvents] = useState<any[]>([]);
@@ -26,6 +18,8 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
   const [energyLevel, setEnergyLevel] = useState<number>(75);
   const [selectedEvent, setSelectedEvent] = useState<any | null>(null);
   const router = useRouter();
+
+  const { user } = useUser();
 
   const handleSyncCalendar = async () => {
     try {
@@ -86,9 +80,11 @@ const Dashboard: React.FC<DashboardProps> = ({ user }) => {
   return (
     <div className="max-w-[600px] my-5 mx-auto p-5 bg-[#f9f9f9] rounded-lg shadow-[0_4px_10px_rgba(0,0,0,0.1)]">
       <h1 className="text-4xl font-semibold text-blue-900 mb-4">
-        Welcome, {user.name}!
+        Welcome, {user?.displayName ?? ""}!
       </h1>
-      <p className="text-2xl text-slate-700 mb-8">Your email: {user.email}</p>
+      <p className="text-2xl text-slate-700 mb-8">
+        Your email: {user?.emails?.[0]?.value ?? ""}
+      </p>
 
       <EnergyInput energyLevel={energyLevel} setEnergyLevel={setEnergyLevel} />
       <EnergyStatus energyLevel={energyLevel} />
